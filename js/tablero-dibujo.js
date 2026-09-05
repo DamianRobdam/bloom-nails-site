@@ -78,10 +78,6 @@ document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("btn-limpiar-tablero")?.addEventListener("click", limpiarTodoElTablero);
   document.getElementById("btn-deshacer-trazo")?.addEventListener("click", deshacerTrazo);
 
-  document.getElementById("btn-tablero-enviar-carrito")?.addEventListener("click", () => {
-    if (typeof agregarPersonalizadoAlCarrito === "function") agregarPersonalizadoAlCarrito();
-  });
-
   document.getElementById("btn-tablero-descargar-png")?.addEventListener("click", () => descargarImagenTablero("png"));
   document.getElementById("btn-tablero-descargar-jpg")?.addEventListener("click", () => descargarImagenTablero("jpg"));
 });

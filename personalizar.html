@@ -78,21 +78,7 @@
           </label>
 
           <div class="tablero-layout" id="tablero-layout" style="display:none;">
-            <!-- Tablero blanco con las 5 uñas -->
-            <div class="tablero-lienzo-caja">
-              <div class="tablero-unas-grid" id="tablero-unas-grid"><!-- 5 lienzos via JS --></div>
-              <div class="tablero-acciones-inferior">
-                <button type="button" class="btn btn-secundario btn-pequeno" id="btn-deshacer-trazo">↩️ Deshacer</button>
-                <button type="button" class="btn btn-secundario btn-pequeno" id="btn-limpiar-tablero">🗑️ Limpiar todo</button>
-              </div>
-              <div class="tablero-acciones-finales">
-                <button type="button" class="btn btn-primario btn-pequeno" id="btn-tablero-enviar-carrito">🛍️ Enviar diseño al carrito</button>
-                <button type="button" class="btn btn-secundario btn-pequeno" id="btn-tablero-descargar-png">⬇️ Descargar PNG</button>
-                <button type="button" class="btn btn-secundario btn-pequeno" id="btn-tablero-descargar-jpg">⬇️ Descargar JPG</button>
-              </div>
-            </div>
-
-            <!-- Panel derecho: herramientas de dibujo -->
+            <!-- Panel izquierdo: herramientas de dibujo -->
             <div class="tablero-panel-derecho">
               <div class="tablero-panel-grupo">
                 <h4>Herramienta</h4>
@@ -111,6 +97,19 @@
                 <h4>Color</h4>
                 <div class="paleta-colores" id="paleta-colores"><!-- swatches via JS --></div>
                 <input type="color" id="color-personalizado-input" value="#e8869e" title="Elige cualquier color">
+              </div>
+            </div>
+
+            <!-- Tablero blanco con las 5 uñas, al costado derecho -->
+            <div class="tablero-lienzo-caja">
+              <div class="tablero-unas-grid" id="tablero-unas-grid"><!-- 5 lienzos via JS --></div>
+              <div class="tablero-acciones-inferior">
+                <button type="button" class="btn btn-secundario btn-pequeno" id="btn-deshacer-trazo">↩️ Deshacer</button>
+                <button type="button" class="btn btn-secundario btn-pequeno" id="btn-limpiar-tablero">🗑️ Limpiar todo</button>
+              </div>
+              <div class="tablero-acciones-finales">
+                <button type="button" class="btn btn-secundario btn-pequeno" id="btn-tablero-descargar-png">⬇️ Descargar PNG</button>
+                <button type="button" class="btn btn-secundario btn-pequeno" id="btn-tablero-descargar-jpg">⬇️ Descargar JPG</button>
               </div>
             </div>
           </div>
