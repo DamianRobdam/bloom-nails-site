@@ -400,6 +400,45 @@ async function bloomRenderizarCatalogo() {
   // activar animación de aparición para las tarjetas recién creadas
   if (window.bloomObservarReveal) window.bloomObservarReveal();
   bloomSincronizarCantidadesCatalogo();
+  bloomInyectarDatosEstructuradosProductos(productos);
+}
+
+// Datos estructurados (JSON-LD) para que Google entienda el catálogo y pueda
+// mostrar los productos con precio en los resultados de búsqueda.
+function bloomInyectarDatosEstructuradosProductos(productos) {
+  if (!productos.length) return;
+  const base = window.location.origin;
+  const listaJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "itemListElement": productos.map((p, i) => ({
+      "@type": "ListItem",
+      "position": i + 1,
+      "item": {
+        "@type": "Product",
+        "name": p.nombre,
+        "description": p.descripcion || "",
+        "image": `${base}/${p.imagen}`,
+        "category": p.categoria || undefined,
+        "offers": {
+          "@type": "Offer",
+          "priceCurrency": "COP",
+          "price": p.precio,
+          "availability": "https://schema.org/InStock",
+          "url": `${base}/#catalogo`
+        }
+      }
+    }))
+  };
+
+  let script = document.getElementById("bloom-jsonld-productos");
+  if (!script) {
+    script = document.createElement("script");
+    script.type = "application/ld+json";
+    script.id = "bloom-jsonld-productos";
+    document.head.appendChild(script);
+  }
+  script.textContent = JSON.stringify(listaJsonLd);
 }
 
 document.addEventListener("DOMContentLoaded", bloomRenderizarCatalogo);
