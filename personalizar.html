@@ -67,54 +67,6 @@
       <div>
         <div id="categorias-personalizador"><!-- se llena con JS --></div>
 
-        <!-- Tablero de dibujo: opcional, colapsado por defecto -->
-        <div class="tablero-bloque reveal">
-          <label class="tablero-toggle-caja" id="tablero-toggle-caja">
-            <input type="checkbox" id="checkbox-activar-tablero">
-            <span class="tablero-toggle-texto">
-              <strong>🎨 ¿Quieres dibujar tu propio diseño?</strong>
-              <span>Opcional — usa un tablero con las 5 uñas para mostrarnos tu idea a mano.</span>
-            </span>
-          </label>
-
-          <div class="tablero-layout" id="tablero-layout" style="display:none;">
-            <!-- Panel izquierdo: herramientas de dibujo -->
-            <div class="tablero-panel-derecho">
-              <div class="tablero-panel-grupo">
-                <h4>Herramienta</h4>
-                <div class="herramienta-botones">
-                  <button type="button" class="herramienta-btn activa" id="btn-herramienta-pincel" data-herramienta="pincel">🖌️ Pincel</button>
-                  <button type="button" class="herramienta-btn" id="btn-herramienta-borrador" data-herramienta="borrador">🧹 Borrador</button>
-                </div>
-              </div>
-
-              <div class="tablero-panel-grupo">
-                <h4>Grosor</h4>
-                <input type="range" id="grosor-pincel" min="2" max="24" value="6">
-              </div>
-
-              <div class="tablero-panel-grupo">
-                <h4>Color</h4>
-                <div class="paleta-colores" id="paleta-colores"><!-- swatches via JS --></div>
-                <input type="color" id="color-personalizado-input" value="#e8869e" title="Elige cualquier color">
-              </div>
-            </div>
-
-            <!-- Tablero blanco con las 5 uñas, al costado derecho -->
-            <div class="tablero-lienzo-caja">
-              <div class="tablero-unas-grid" id="tablero-unas-grid"><!-- 5 lienzos via JS --></div>
-              <div class="tablero-acciones-inferior">
-                <button type="button" class="btn btn-secundario btn-pequeno" id="btn-deshacer-trazo">↩️ Deshacer</button>
-                <button type="button" class="btn btn-secundario btn-pequeno" id="btn-limpiar-tablero">🗑️ Limpiar todo</button>
-              </div>
-              <div class="tablero-acciones-finales">
-                <button type="button" class="btn btn-secundario btn-pequeno" id="btn-tablero-descargar-png">⬇️ Descargar PNG</button>
-                <button type="button" class="btn btn-secundario btn-pequeno" id="btn-tablero-descargar-jpg">⬇️ Descargar JPG</button>
-              </div>
-            </div>
-          </div>
-        </div>
-
         <!-- Imagen de referencia -->
         <div class="categoria-bloque reveal">
           <div class="categoria-encabezado">
@@ -199,7 +151,6 @@
   <script src="js/carrito.js"></script>
   <script src="js/personalizar-data.js"></script>
   <script src="js/catalogo.js"></script>
-  <script src="js/tablero-dibujo.js"></script>
   <script src="js/personalizar.js"></script>
   <script>
     document.addEventListener("DOMContentLoaded", () => {
