@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tu carrito · Bloom</title>
+<meta name="description" content="Revisa tu pedido Bloom, elige el tipo de envío y confirma por WhatsApp. Pago por Nequi.">
+<link rel="icon" type="image/png" href="assets/img/favicon.png?v=2">
+<link rel="shortcut icon" type="image/png" href="assets/img/favicon.png?v=2">
+<link rel="apple-touch-icon" href="assets/img/favicon.png?v=2">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ================= HEADER ================= -->
+  <header class="encabezado fijo" id="encabezado">
+    <div class="contenedor nav-barra">
+      <a href="index.html" class="logo">
+        <img src="assets/img/logo-bloom-header.png" alt="Bloom · Press On Nails" class="logo-img">
+      </a>
+
+      <nav class="nav-menu" id="nav-menu">
+        <a href="index.html#inicio">Inicio</a>
+        <a href="index.html#catalogo">Catálogo</a>
+        <a href="personalizar.html">Personalizar</a>
+        <a href="guia.html">Guía de aplicación</a>
+        <a href="index.html#contacto">Contacto</a>
+      </nav>
+
+      <div class="nav-acciones">
+        <a href="carrito.html" class="carrito-icono-link" aria-label="Ver carrito">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M1 1h4l2.6 13.4a2 2 0 0 0 2 1.6h9.8a2 2 0 0 0 2-1.6L23 6H6"/></svg>
+          <span class="carrito-badge">0</span>
+        </a>
+        <button class="menu-hamburguesa" id="menu-hamburguesa" aria-label="Abrir menú">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ================= HERO CARRITO ================= -->
+  <section class="personalizar-hero" style="padding-bottom:40px;">
+    <div class="contenedor centrado" style="max-width:640px;">
+      <span class="hero-etiqueta">🛍️ Tu pedido</span>
+      <h1 class="seccion-titulo" style="margin-top:16px;">Revisa tu <span>carrito</span></h1>
+      <p class="seccion-descripcion centrado">Ajusta cantidades, elige el envío y confirma tu pedido por WhatsApp.</p>
+      <div class="promo-banda-envoltorio">
+        <div class="promo-banda">
+          <span class="promo-banda-icono">🎉</span>
+          <span class="promo-banda-texto">Compras desde <strong id="promo-monto-minimo">$100.000</strong> tienen <strong id="promo-porcentaje">10%</strong> de descuento automático</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CONTENIDO CARRITO ================= -->
+  <section class="seccion" style="padding-top:50px;">
+    <div class="contenedor carrito-layout">
+
+      <!-- Columna izquierda: items -->
+      <div>
+        <div id="carrito-vacio" class="carrito-vacio" style="display:none;">
+          <div class="icono-vacio">🛍️</div>
+          <h3 style="margin-bottom:10px;">Tu carrito está vacío</h3>
+          <p style="color:var(--texto-suave); margin-bottom:24px;">Explora el catálogo o arma tu diseño personalizado.</p>
+          <div class="hero-acciones" style="justify-content:center;">
+            <a href="index.html#catalogo" class="btn btn-primario">Ver catálogo</a>
+            <a href="personalizar.html" class="btn btn-secundario">Personalizar diseño</a>
+          </div>
+        </div>
+
+        <div id="carrito-items-lista"></div>
+
+        <button type="button" class="btn btn-secundario btn-pequeno" id="btn-vaciar-carrito" style="margin-top:10px;">Vaciar carrito</button>
+      </div>
+
+      <!-- Columna derecha: resumen, envío y pago -->
+      <aside class="carrito-resumen-panel" id="carrito-resumen-panel">
+        <h3>Envío</h3>
+        <div class="envio-opciones">
+          <label class="envio-opcion">
+            <input type="radio" name="envio" value="bogota" checked>
+            <span class="envio-opcion-texto">
+              <strong>Bogotá — Gratis</strong>
+              <span>Entrega coordinada por WhatsApp, sin costo adicional.</span>
+            </span>
+          </label>
+          <label class="envio-opcion">
+            <input type="radio" name="envio" value="nacional">
+            <span class="envio-opcion-texto">
+              <strong>Resto de Colombia</strong>
+              <span>Costo adicional según la transportadora y tu ciudad — te lo confirmamos por WhatsApp.</span>
+            </span>
+          </label>
+        </div>
+
+        <div class="campo campo-ciudad" id="campo-ciudad-envio" style="display:none;">
+          <label for="campo-ciudad-texto">¿A qué ciudad enviamos?</label>
+          <input type="text" id="campo-ciudad-texto" placeholder="Ej: Medellín, Antioquia">
+        </div>
+
+        <div class="carrito-totales">
+          <div class="fila">
+            <span>Subtotal</span>
+            <span id="carrito-subtotal">$0</span>
+          </div>
+          <div class="fila">
+            <span>Envío</span>
+            <span id="carrito-envio-texto">Gratis</span>
+          </div>
+          <div class="fila fila-descuento" id="fila-descuento" style="display:none;">
+            <span>Descuento <span id="fila-descuento-porcentaje">10%</span> 🎁</span>
+            <span id="carrito-descuento-valor">-$0</span>
+          </div>
+          <div class="fila total">
+            <span>Total</span>
+            <span class="total-valor" id="carrito-total-valor">$0</span>
+          </div>
+        </div>
+
+        <p class="mensaje-descuento" id="mensaje-descuento" style="display:none;"></p>
+
+        <p class="aviso-caja" id="nota-envio-nacional" style="display:none; font-size:0.78rem;">
+          📦 El costo de envío nacional varía según la transportadora y tu ciudad. Te lo confirmamos por WhatsApp antes de que pagues.
+        </p>
+
+        <div class="nequi-caja">
+          <h4>💳 Pago por Nequi</h4>
+          <p>Este sitio no procesa pagos en línea. Transfiere el total por Nequi y comparte el comprobante por WhatsApp para confirmar tu pedido.</p>
+          <div class="nequi-numero-fila">
+            <span>322 329 1635</span>
+            <button type="button" class="nequi-copiar-btn" id="btn-copiar-nequi">Copiar</button>
+          </div>
+        </div>
+
+        <button type="button" class="btn btn-whatsapp" id="btn-confirmar-pedido" style="width:100%; justify-content:center;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12c0 1.85.5 3.58 1.36 5.07L2 22l5.06-1.33A9.94 9.94 0 0 0 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2z"/></svg>
+          Confirmar pedido por WhatsApp
+        </button>
+      </aside>
+
+    </div>
+  </section>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="pie-pagina">
+    <div class="contenedor">
+      <div class="pie-grid">
+        <div>
+          <img src="assets/img/logo-bloom-header.png" alt="Bloom · Press On Nails" class="pie-logo-img">
+          <p>Uñas press on premium en tonos rosa y beige. Belleza práctica para mujeres que florecen a su manera.</p>
+        </div>
+        <div>
+          <h4>Navegación</h4>
+          <div class="pie-enlaces">
+            <a href="index.html#inicio">Inicio</a>
+            <a href="index.html#catalogo">Catálogo</a>
+            <a href="personalizar.html">Personalizar</a>
+            <a href="guia.html">Guía de aplicación</a>
+            <a href="index.html#contacto">Contacto</a>
+          </div>
+        </div>
+        <div>
+          <h4>Contacto</h4>
+          <div class="pie-enlaces">
+            <a href="#" id="enlace-whatsapp-pie" target="_blank" rel="noopener">WhatsApp</a>
+            <a href="index.html#contacto">Formulario de contacto</a>
+            <a href="admin.html">Panel de administración</a>
+          </div>
+        </div>
+      </div>
+      <div class="pie-inferior">
+        <span>© <span id="anio-actual"></span> Bloom. Todos los derechos reservados.</span>
+        <span>Hecho con 🌸 en Bogotá, Colombia</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- WhatsApp flotante -->
+  <a href="#" id="whatsapp-flotante" class="whatsapp-flotante" target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp">
+    <svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12c0 1.85.5 3.58 1.36 5.07L2 22l5.06-1.33A9.94 9.94 0 0 0 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm5.2 14.2c-.22.62-1.28 1.18-1.76 1.24-.45.06-.98.09-1.58-.1-.36-.11-.83-.27-1.42-.53-2.5-1.08-4.13-3.6-4.26-3.77-.12-.17-1.02-1.36-1.02-2.6 0-1.23.65-1.84.88-2.09.22-.25.5-.31.66-.31.17 0 .33 0 .48.01.15.01.36-.06.56.43.22.53.74 1.83.8 1.96.06.13.1.28.02.45-.08.17-.12.28-.24.43-.12.15-.26.33-.37.44-.12.12-.25.25-.11.5.14.25.62 1.03 1.34 1.67.92.82 1.7 1.08 1.95 1.2.25.12.4.1.55-.06.15-.17.63-.73.8-.98.17-.25.34-.2.56-.12.23.08 1.46.69 1.71.81.25.12.42.18.48.29.06.11.06.61-.16 1.23z"/></svg>
+  </a>
+
+  <script src="js/main.js"></script>
+  <script src="js/carrito.js"></script>
+  <script src="js/catalogo.js"></script>
+  <script src="js/carrito-pagina.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      if (window.bloomObservarReveal) window.bloomObservarReveal();
+      const texto = encodeURIComponent("¡Hola Bloom! ✨ Tengo una duda sobre mi pedido.");
+      const url = `https://wa.me/${window.BLOOM_WHATSAPP_NUMERO}?text=${texto}`;
+      const b = document.getElementById("enlace-whatsapp-pie");
+      if (b) b.href = url;
+    });
+  </script>
+</body>
+</html>

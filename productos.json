@@ -1,0 +1,83 @@
+[
+  {
+    "id": "demo-1",
+    "nombre": "Ombré Rosa Dream",
+    "categoria": "Ombré",
+    "precio": 45000,
+    "descripcion": "Degradado rosa suave, acabado brillante, forma almendra.",
+    "imagen": "assets/img/producto-1.svg",
+    "incluye": [
+      { "nombre": "24 uñas press on", "imagen": "assets/img/incluye-lima.svg" }
+    ]
+  },
+  {
+    "id": "demo-2",
+    "nombre": "Beige Nude Chic",
+    "categoria": "Nude",
+    "precio": 42000,
+    "descripcion": "Beige elegante con borde dorado, ideal para toda ocasión.",
+    "imagen": "assets/img/producto-2.svg",
+    "incluye": [
+      { "nombre": "24 uñas press on", "imagen": "assets/img/incluye-lima.svg" }
+    ]
+  },
+  {
+    "id": "demo-3",
+    "nombre": "Glitter Rosa Fiesta",
+    "categoria": "Glitter",
+    "precio": 48000,
+    "descripcion": "Full glitter rosa, brillo intenso para looks de fiesta.",
+    "imagen": "assets/img/producto-3.svg",
+    "incluye": [
+      { "nombre": "24 uñas press on", "imagen": "assets/img/incluye-lima.svg" }
+    ]
+  },
+  {
+    "id": "demo-4",
+    "nombre": "Francesa Moderna",
+    "categoria": "Francesa",
+    "precio": 40000,
+    "descripcion": "Francesa reinventada con línea rose gold.",
+    "imagen": "assets/img/producto-4.svg",
+    "incluye": [
+      { "nombre": "24 uñas press on", "imagen": "assets/img/incluye-lima.svg" }
+    ]
+  },
+  {
+    "id": "demo-5",
+    "nombre": "Rosa Pastel Mate",
+    "categoria": "Mate",
+    "precio": 43000,
+    "descripcion": "Acabado mate aterciopelado en rosa pastel.",
+    "imagen": "assets/img/producto-5.svg",
+    "incluye": [
+      { "nombre": "24 uñas press on", "imagen": "assets/img/incluye-lima.svg" }
+    ]
+  },
+  {
+    "id": "demo-6",
+    "nombre": "Beige Marmoleado",
+    "categoria": "Nude",
+    "precio": 46000,
+    "descripcion": "Efecto mármol en tonos beige y arena.",
+    "imagen": "assets/img/producto-6.svg",
+    "incluye": [
+      { "nombre": "24 uñas press on", "imagen": "assets/img/incluye-lima.svg" }
+    ]
+  },
+  {
+    "id": "demo-7",
+    "nombre": "Kit de aplicación Bloom",
+    "categoria": "Kit",
+    "precio": 18000,
+    "descripcion": "Todo lo necesario para preparar tu uña natural y lograr una aplicación perfecta en casa.",
+    "imagen": "assets/img/incluye-toallitas-alcohol.svg",
+    "incluye": [
+      { "nombre": "Toallitas de alcohol", "imagen": "assets/img/incluye-toallitas-alcohol.svg" },
+      { "nombre": "Palito de naranjo", "imagen": "assets/img/incluye-palito-naranjo.svg" },
+      { "nombre": "Lima de uñas", "imagen": "assets/img/incluye-lima.svg" },
+      { "nombre": "Buffer pulidor", "imagen": "assets/img/incluye-buffer.svg" },
+      { "nombre": "Adhesivo doble contacto extra", "imagen": "assets/img/incluye-adhesivo.svg" }
+    ]
+  }
+]

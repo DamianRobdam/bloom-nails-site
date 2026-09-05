@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Personaliza tu diseño · Bloom</title>
+<meta name="description" content="Diseña tu set de uñas press on a tu manera: elige forma, largo, acabado y decoración, y ve el costo total en tiempo real.">
+<link rel="icon" type="image/png" href="assets/img/favicon.png?v=2">
+<link rel="shortcut icon" type="image/png" href="assets/img/favicon.png?v=2">
+<link rel="apple-touch-icon" href="assets/img/favicon.png?v=2">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ================= HEADER ================= -->
+  <header class="encabezado fijo" id="encabezado">
+    <div class="contenedor nav-barra">
+      <a href="index.html" class="logo">
+        <img src="assets/img/logo-bloom-header.png" alt="Bloom · Press On Nails" class="logo-img">
+      </a>
+
+      <nav class="nav-menu" id="nav-menu">
+        <a href="index.html#inicio">Inicio</a>
+        <a href="index.html#catalogo">Catálogo</a>
+        <a href="personalizar.html">Personalizar</a>
+        <a href="guia.html">Guía de aplicación</a>
+        <a href="index.html#nosotros">Nosotros</a>
+        <a href="index.html#contacto">Contacto</a>
+      </nav>
+
+      <div class="nav-acciones">
+        <a href="carrito.html" class="carrito-icono-link" aria-label="Ver carrito">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M1 1h4l2.6 13.4a2 2 0 0 0 2 1.6h9.8a2 2 0 0 0 2-1.6L23 6H6"/></svg>
+          <span class="carrito-badge">0</span>
+        </a>
+        <a href="index.html#contacto" class="btn btn-secundario btn-pequeno">Contáctanos</a>
+        <button class="menu-hamburguesa" id="menu-hamburguesa" aria-label="Abrir menú">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ================= HERO PERSONALIZADOR ================= -->
+  <section class="personalizar-hero">
+    <div class="contenedor centrado" style="max-width:700px;">
+      <span class="hero-etiqueta">🎨 Hecho a tu medida</span>
+      <h1 class="seccion-titulo" style="margin-top:16px;">Diseña tu set <span>100% personalizado</span></h1>
+      <p class="seccion-descripcion centrado">
+        Elige forma, largo, acabado y decoración. El costo se actualiza en vivo
+        con cada opción que selecciones, y al final ves el total exacto.
+      </p>
+      <div class="promo-banda-envoltorio">
+        <div class="promo-banda">
+          <span class="promo-banda-icono">🎉</span>
+          <span class="promo-banda-texto">Compras desde <strong id="promo-monto-minimo">$100.000</strong> tienen <strong id="promo-porcentaje">10%</strong> de descuento automático</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CONFIGURADOR ================= -->
+  <section class="seccion" style="padding-top:60px;">
+    <div class="contenedor configurador-layout">
+
+      <!-- Columna de opciones -->
+      <div>
+        <div id="categorias-personalizador"><!-- se llena con JS --></div>
+
+        <!-- Tablero de dibujo: opcional, colapsado por defecto -->
+        <div class="tablero-bloque reveal">
+          <label class="tablero-toggle-caja" id="tablero-toggle-caja">
+            <input type="checkbox" id="checkbox-activar-tablero">
+            <span class="tablero-toggle-texto">
+              <strong>🎨 ¿Quieres dibujar tu propio diseño?</strong>
+              <span>Opcional — usa un tablero con las 5 uñas para mostrarnos tu idea a mano.</span>
+            </span>
+          </label>
+
+          <div class="tablero-layout" id="tablero-layout" style="display:none;">
+            <!-- Tablero blanco con las 5 uñas -->
+            <div class="tablero-lienzo-caja">
+              <div class="tablero-unas-grid" id="tablero-unas-grid"><!-- 5 lienzos via JS --></div>
+              <div class="tablero-acciones-inferior">
+                <button type="button" class="btn btn-secundario btn-pequeno" id="btn-deshacer-trazo">↩️ Deshacer</button>
+                <button type="button" class="btn btn-secundario btn-pequeno" id="btn-limpiar-tablero">🗑️ Limpiar todo</button>
+              </div>
+              <div class="tablero-acciones-finales">
+                <button type="button" class="btn btn-primario btn-pequeno" id="btn-tablero-enviar-carrito">🛍️ Enviar diseño al carrito</button>
+                <button type="button" class="btn btn-secundario btn-pequeno" id="btn-tablero-descargar-png">⬇️ Descargar PNG</button>
+                <button type="button" class="btn btn-secundario btn-pequeno" id="btn-tablero-descargar-jpg">⬇️ Descargar JPG</button>
+              </div>
+            </div>
+
+            <!-- Panel derecho: herramientas de dibujo -->
+            <div class="tablero-panel-derecho">
+              <div class="tablero-panel-grupo">
+                <h4>Herramienta</h4>
+                <div class="herramienta-botones">
+                  <button type="button" class="herramienta-btn activa" id="btn-herramienta-pincel" data-herramienta="pincel">🖌️ Pincel</button>
+                  <button type="button" class="herramienta-btn" id="btn-herramienta-borrador" data-herramienta="borrador">🧹 Borrador</button>
+                </div>
+              </div>
+
+              <div class="tablero-panel-grupo">
+                <h4>Grosor</h4>
+                <input type="range" id="grosor-pincel" min="2" max="24" value="6">
+              </div>
+
+              <div class="tablero-panel-grupo">
+                <h4>Color</h4>
+                <div class="paleta-colores" id="paleta-colores"><!-- swatches via JS --></div>
+                <input type="color" id="color-personalizado-input" value="#e8869e" title="Elige cualquier color">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Imagen de referencia -->
+        <div class="categoria-bloque reveal">
+          <div class="categoria-encabezado">
+            <h3 class="categoria-titulo">5. Imagen de referencia (opcional)</h3>
+            <span class="categoria-tipo-tag">Opcional</span>
+          </div>
+          <p class="categoria-ayuda">¿Tienes una foto del diseño que quieres? Súbela y te ayudamos a lograrlo lo más parecido posible.</p>
+
+          <div class="subir-imagen-caja" id="caja-imagen-referencia">
+            <p style="color:var(--texto-suave); font-size:0.9rem;">Sube una foto del diseño que te inspira 📸</p>
+            <input type="file" id="campo-imagen-referencia" accept="image/*">
+            <div id="preview-imagen-referencia"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Columna resumen -->
+      <aside class="resumen-panel reveal">
+        <h3>Resumen de tu pedido</h3>
+        <div class="resumen-imagen-chip" id="resumen-imagen-chip" style="display:none;">
+          🖼️ Imagen de referencia adjunta
+        </div>
+        <div class="resumen-lista" id="resumen-lista"></div>
+        <hr class="resumen-divisor">
+        <div class="resumen-total-fila">
+          <span>Total estimado</span>
+          <span class="resumen-total-valor" id="resumen-total-valor">$0</span>
+        </div>
+        <button type="button" class="btn btn-primario" id="btn-pedir-personalizado" style="width:100%; justify-content:center;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M1 1h4l2.6 13.4a2 2 0 0 0 2 1.6h9.8a2 2 0 0 0 2-1.6L23 6H6"/></svg>
+          Agregar mi diseño al carrito
+        </button>
+        <a href="carrito.html" class="btn btn-secundario" style="width:100%; justify-content:center; margin-top:10px;">Ver carrito</a>
+        <p style="font-size:0.78rem; color:var(--texto-suave); margin-top:14px; text-align:center;">
+          El precio es un estimado. Lo confirmamos contigo por WhatsApp antes de fabricar tu set.
+        </p>
+      </aside>
+
+    </div>
+  </section>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="pie-pagina">
+    <div class="contenedor">
+      <div class="pie-grid">
+        <div>
+          <img src="assets/img/logo-bloom-header.png" alt="Bloom · Press On Nails" class="pie-logo-img">
+          <p>Uñas press on premium en tonos rosa y beige. Belleza práctica para mujeres que florecen a su manera.</p>
+        </div>
+        <div>
+          <h4>Navegación</h4>
+          <div class="pie-enlaces">
+            <a href="index.html#inicio">Inicio</a>
+            <a href="index.html#catalogo">Catálogo</a>
+            <a href="personalizar.html">Personalizar</a>
+            <a href="guia.html">Guía de aplicación</a>
+            <a href="index.html#contacto">Contacto</a>
+          </div>
+        </div>
+        <div>
+          <h4>Contacto</h4>
+          <div class="pie-enlaces">
+            <a href="#" id="enlace-whatsapp-pie" target="_blank" rel="noopener">WhatsApp</a>
+            <a href="index.html#contacto">Formulario de contacto</a>
+            <a href="admin.html">Panel de administración</a>
+          </div>
+        </div>
+      </div>
+      <div class="pie-inferior">
+        <span>© <span id="anio-actual"></span> Bloom. Todos los derechos reservados.</span>
+        <span>Hecho con 🌸 en Bogotá, Colombia</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- WhatsApp flotante -->
+  <a href="#" id="whatsapp-flotante" class="whatsapp-flotante" target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp">
+    <svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12c0 1.85.5 3.58 1.36 5.07L2 22l5.06-1.33A9.94 9.94 0 0 0 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm5.2 14.2c-.22.62-1.28 1.18-1.76 1.24-.45.06-.98.09-1.58-.1-.36-.11-.83-.27-1.42-.53-2.5-1.08-4.13-3.6-4.26-3.77-.12-.17-1.02-1.36-1.02-2.6 0-1.23.65-1.84.88-2.09.22-.25.5-.31.66-.31.17 0 .33 0 .48.01.15.01.36-.06.56.43.22.53.74 1.83.8 1.96.06.13.1.28.02.45-.08.17-.12.28-.24.43-.12.15-.26.33-.37.44-.12.12-.25.25-.11.5.14.25.62 1.03 1.34 1.67.92.82 1.7 1.08 1.95 1.2.25.12.4.1.55-.06.15-.17.63-.73.8-.98.17-.25.34-.2.56-.12.23.08 1.46.69 1.71.81.25.12.42.18.48.29.06.11.06.61-.16 1.23z"/></svg>
+  </a>
+
+  <script src="js/main.js"></script>
+  <script src="js/carrito.js"></script>
+  <script src="js/personalizar-data.js"></script>
+  <script src="js/catalogo.js"></script>
+  <script src="js/tablero-dibujo.js"></script>
+  <script src="js/personalizar.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const texto = encodeURIComponent("¡Hola Bloom! ✨ Quiero conocer más sobre las uñas press on.");
+      const url = `https://wa.me/${window.BLOOM_WHATSAPP_NUMERO}?text=${texto}`;
+      const b = document.getElementById("enlace-whatsapp-pie");
+      if (b) b.href = url;
+    });
+  </script>
+</body>
+</html>

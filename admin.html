@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bloom · Panel de administración</title>
+<link rel="icon" type="image/png" href="assets/img/favicon.png?v=2">
+<link rel="shortcut icon" type="image/png" href="assets/img/favicon.png?v=2">
+<link rel="apple-touch-icon" href="assets/img/favicon.png?v=2">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body class="admin-body">
+
+  <!-- ============ PANTALLA DE ACCESO ============ -->
+  <div class="login-caja" id="login-caja">
+    <h2>🌸 Panel Bloom</h2>
+    <p>Ingresa la contraseña para administrar el catálogo.</p>
+    <input type="password" id="login-clave" placeholder="Contraseña">
+    <div class="login-error" id="login-error"></div>
+    <button class="btn btn-primario" style="width:100%; justify-content:center;" id="login-btn">Entrar</button>
+    <p style="margin-top:16px; font-size:0.78rem;">
+      Contraseña de fábrica: <strong>bloom2026</strong><br>
+      (puedes cambiarla en <code>js/admin.js</code>)
+    </p>
+  </div>
+
+  <!-- ============ PANEL (oculto hasta iniciar sesión) ============ -->
+  <div id="panel-admin" style="display:none;">
+
+    <header class="admin-header">
+      <div class="contenedor">
+        <a href="index.html" class="logo">
+          <img src="assets/img/logo-bloom-header.png" alt="Bloom" class="logo-img" style="height:30px;">
+          <span style="font-family:'Playfair Display',serif; font-weight:700; color:var(--texto-oscuro);">· Admin</span>
+        </a>
+        <div style="display:flex; gap:10px;">
+          <a href="index.html" class="btn btn-secundario btn-pequeno">Ver sitio</a>
+          <button class="btn btn-primario btn-pequeno" id="btn-cerrar-sesion">Cerrar sesión</button>
+        </div>
+      </div>
+    </header>
+
+    <div class="admin-layout">
+
+      <!-- ---------- FORMULARIO ---------- -->
+      <div class="panel">
+        <h2 id="form-titulo">Agregar producto</h2>
+        <p class="ayuda">Sube la foto del diseño, el nombre y el precio. Se guarda automáticamente en este navegador.</p>
+
+        <div class="preview-imagen" id="preview-imagen">
+          <span>Aún no has subido una foto<br>(clic abajo para elegir una)</span>
+        </div>
+        <input type="file" id="campo-imagen" accept="image/*" style="margin-bottom:18px;">
+
+        <div class="campo" style="margin-bottom:14px;">
+          <label>Nombre del diseño</label>
+          <input type="text" id="campo-nombre" placeholder="Ej: Ombré Rosa Dream">
+        </div>
+        <div class="campo" style="margin-bottom:14px;">
+          <label>Precio (COP)</label>
+          <input type="number" id="campo-precio" placeholder="Ej: 45000">
+        </div>
+        <div class="campo" style="margin-bottom:14px;">
+          <label>Categoría</label>
+          <select id="campo-categoria">
+            <option>Ombré</option>
+            <option>Nude</option>
+            <option>Glitter</option>
+            <option>Francesa</option>
+            <option>Mate</option>
+            <option>Otro</option>
+          </select>
+        </div>
+        <div class="campo" style="margin-bottom:14px;">
+          <label>Descripción corta</label>
+          <textarea id="campo-descripcion" placeholder="Ej: Set de 24 uñas, forma almendra, acabado brillante."></textarea>
+        </div>
+
+        <div class="campo" style="margin-bottom:8px;">
+          <label>¿Qué incluye? (opcional)</label>
+          <p class="ayuda" style="margin-bottom:10px;">
+            Agrega cada elemento con su nombre y, si quieres, una foto propia
+            (ej: "Toallitas de alcohol", "Palito de naranjo"). Se mostrará
+            cuando la clienta haga clic en el producto para ver el detalle.
+          </p>
+          <div class="incluye-lista-admin" id="lista-incluye-admin"></div>
+          <div class="incluye-form-fila">
+            <label class="incluye-subir-foto-btn" id="incluye-subir-foto-btn" title="Foto de este elemento (opcional)">
+              📷
+              <input type="file" id="campo-incluye-imagen" accept="image/*" style="display:none;">
+            </label>
+            <input type="text" id="campo-incluye-nombre" placeholder="Ej: Palito de naranjo">
+            <button type="button" class="btn btn-secundario btn-pequeno" id="btn-agregar-incluye">+ Agregar</button>
+          </div>
+        </div>
+
+        <div class="acciones-panel">
+          <button class="btn btn-primario" id="btn-guardar" style="flex:1; justify-content:center;">Agregar producto</button>
+          <button class="btn btn-secundario" id="btn-cancelar-edicion" style="display:none;">Cancelar</button>
+        </div>
+      </div>
+
+      <!-- ---------- LISTA + EXPORTAR ---------- -->
+      <div>
+        <div class="panel" style="margin-bottom:24px;">
+          <h2>Catálogo actual</h2>
+          <p class="ayuda">Estos productos son los que ves en el sitio en <strong>este navegador</strong>.</p>
+
+          <div class="aviso-caja">
+            🌐 <strong>Importante:</strong> como el sitio no tiene servidor propio, lo que agregas aquí
+            se guarda en este navegador. Para que <strong>todas las visitantes</strong> vean los productos nuevos
+            cuando publiques el sitio, da clic en <strong>"Descargar productos.json"</strong> y sube ese archivo
+            a la carpeta del sitio (reemplazando el anterior) en tu hosting.
+          </div>
+
+          <div class="acciones-panel">
+            <button class="btn btn-secundario btn-pequeno" id="btn-exportar">⬇️ Descargar productos.json</button>
+            <label class="btn btn-secundario btn-pequeno" style="cursor:pointer;">
+              ⬆️ Cargar productos.json
+              <input type="file" id="campo-importar" accept=".json" style="display:none;">
+            </label>
+            <button class="btn btn-secundario btn-pequeno" id="btn-restaurar">Restaurar catálogo de ejemplo</button>
+          </div>
+        </div>
+
+        <div class="lista-productos-admin" id="lista-productos-admin"></div>
+      </div>
+
+    </div>
+
+    <!-- ================= CLIENTES Y FIDELIZACIÓN ================= -->
+    <div class="admin-layout" style="margin-top:10px;">
+
+      <!-- ---------- FORMULARIO: REGISTRAR COMPRA ---------- -->
+      <div class="panel">
+        <h2>Registrar compra confirmada</h2>
+        <p class="ayuda">
+          Úsalo SOLO cuando ya verificaste que el pago por Nequi llegó. Busca a la
+          clienta por su número de WhatsApp; si no existe, se crea automáticamente.
+        </p>
+
+        <div class="campo" style="margin-bottom:14px;">
+          <label>Número de WhatsApp de la clienta</label>
+          <input type="text" id="campo-cliente-telefono" placeholder="Ej: 3001234567">
+        </div>
+        <div class="campo" style="margin-bottom:14px;">
+          <label>Nombre (opcional)</label>
+          <input type="text" id="campo-cliente-nombre" placeholder="Ej: Valentina">
+        </div>
+        <div class="campo" style="margin-bottom:14px;">
+          <label>Valor de esta compra (COP)</label>
+          <input type="number" id="campo-cliente-monto" placeholder="Ej: 45000">
+        </div>
+        <div class="campo" style="margin-bottom:8px;">
+          <label>¿Qué compró? (opcional)</label>
+          <input type="text" id="campo-cliente-nota" placeholder="Ej: Set Ombré Rosa Dream + envío">
+        </div>
+
+        <div class="acciones-panel">
+          <button class="btn btn-primario" id="btn-registrar-compra" style="flex:1; justify-content:center;">+ Registrar compra</button>
+        </div>
+
+        <div class="aviso-caja" style="margin-top:20px; margin-bottom:0;">
+          🎁 <strong>Regla de fidelidad:</strong> desde la <strong id="texto-umbral">3ª</strong> compra en
+          adelante, la clienta queda con <strong id="texto-descuento">10%</strong> de descuento
+          permanente. Puedes cambiar estos valores en <code>js/clientes.js</code>
+          (<code>FIDELIDAD_UMBRAL</code> y <code>FIDELIDAD_DESCUENTO_PORCENTAJE</code>).
+        </div>
+      </div>
+
+      <!-- ---------- LISTA DE CLIENTES ---------- -->
+      <div>
+        <div class="panel" style="margin-bottom:24px;">
+          <h2>Clientes registradas</h2>
+          <p class="ayuda">Este registro también se guarda en este navegador — es tu control interno, no lo ve el sitio público.</p>
+          <div class="campo">
+            <input type="text" id="campo-buscar-cliente" placeholder="🔍 Buscar por número o nombre...">
+          </div>
+        </div>
+
+        <div class="lista-productos-admin" id="lista-clientes-admin"></div>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="js/catalogo.js"></script>
+  <script src="js/admin.js"></script>
+  <script src="js/clientes.js"></script>
+</body>
+</html>

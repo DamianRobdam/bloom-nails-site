@@ -1,0 +1,32 @@
+Cómo agregar los videos de cada paso (guía de aplicación)
+============================================================
+
+En "Guía de aplicación" (guia.html), cada uno de los 6 pasos tiene un
+botón "🎥 Ver video". Mientras no exista el archivo, ese botón muestra
+"El video de este paso todavía no se ha agregado" — no rompe el sitio.
+
+Para activarlo, solo agrega tu video AQUÍ MISMO, en esta carpeta
+(assets/video/), con exactamente estos nombres:
+
+  paso-1.mp4   → Prepara tus uñas
+  paso-2.mp4   → Limpia y desengrasa
+  paso-3.mp4   → Aplica el adhesivo
+  paso-4.mp4   → Presiona y sostén
+  paso-5.mp4   → Ajusta los bordes
+  paso-6.mp4   → ¡Listo! Disfruta tu manicure
+
+No necesitas tocar ningún código: en cuanto el archivo con ese nombre
+exista en esta carpeta, el botón de ese paso empieza a mostrar el video
+automáticamente.
+
+Recomendaciones para grabar:
+- Formato .mp4 (el más compatible con todos los navegadores).
+- Graba en vertical o cuadrado, como si fuera para Instagram/TikTok —
+  se ve mejor en celular, donde la mayoría de tus clientas van a mirarlo.
+- Videos cortos (10-30 segundos por paso) cargan más rápido.
+- Si el archivo pesa mucho (más de 15-20 MB), comprímelo antes de
+  subirlo — puedes usar HandBrake (gratis) o cualquier compresor de
+  video en línea, así el sitio carga más rápido para tus clientas.
+
+Este archivo (LEEME-videos.txt) es solo una guía, no afecta el sitio;
+puedes borrarlo cuando quieras.
