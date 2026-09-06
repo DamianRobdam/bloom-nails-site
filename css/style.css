@@ -1580,3 +1580,111 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .incluye-subir-foto-btn.con-foto { border-color: var(--rosa-fuerte); }
 .incluye-subir-foto-btn img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 
+
+/* =========================== INTRO ANIMADA =========================== */
+.intro-bloom {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(160deg, var(--rosa-pastel) 0%, var(--beige-claro) 60%, var(--rosa-claro) 100%);
+  overflow: hidden;
+  transition: opacity 0.7s ease;
+}
+.intro-bloom.intro-cerrando { opacity: 0; pointer-events: none; }
+
+body.intro-bloqueo { overflow: hidden; height: 100%; }
+
+.intro-saltar {
+  position: absolute;
+  top: 22px; right: 22px;
+  background: rgba(255,255,255,0.6);
+  border: 1px solid rgba(255,255,255,0.8);
+  color: var(--texto-oscuro);
+  font-size: 0.78rem;
+  padding: 8px 14px;
+  border-radius: 20px;
+  cursor: pointer;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+.intro-saltar:hover { background: #fff; }
+
+.intro-flor-caja {
+  position: relative;
+  width: 190px;
+  height: 190px;
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.intro-flor-caja.flor-oculta { opacity: 0; transform: scale(0.7) translateY(-10px); }
+
+.intro-flor {
+  width: 100%;
+  height: 100%;
+  animation: bloom-girar 1.5s ease-in-out 1;
+  transform-origin: 50% 50%;
+}
+@keyframes bloom-girar {
+  0%   { transform: rotate(0deg) scale(0.6); opacity: 0; }
+  20%  { opacity: 1; }
+  100% { transform: rotate(360deg) scale(1); opacity: 1; }
+}
+
+.intro-mano-caja {
+  width: 210px;
+  height: 182px;
+  margin-top: 4px;
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.intro-mano-caja.mano-visible { opacity: 1; transform: translateY(0); }
+.intro-mano { width: 100%; height: 100%; }
+
+.intro-una { fill: #F6E4D6; stroke: #C9A876; stroke-width: 1.2; transition: fill 0.35s ease; }
+.intro-una.una-pintada { fill: url(#intro-grad-una); }
+
+.intro-petalo-libre {
+  position: fixed;
+  top: 0; left: 0;
+  width: 22px; height: 28px;
+  background: linear-gradient(135deg, var(--rosa-fuerte), var(--rosa-claro));
+  border-radius: 50% 50% 50% 0;
+  box-shadow: 0 2px 6px rgba(59,42,47,0.2);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 3;
+  transition: transform 0.38s cubic-bezier(.5,-0.1,.4,1.2), opacity 0.25s ease;
+}
+.intro-petalo-libre.activo { opacity: 1; }
+
+.intro-marca {
+  text-align: center;
+  margin-top: 20px;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.intro-marca.marca-visible { opacity: 1; transform: translateY(0); }
+.intro-marca .intro-logo-texto {
+  display: block;
+  font-family: 'Playfair Display', serif;
+  font-size: 2.1rem;
+  font-weight: 700;
+  color: var(--rosa-fuerte);
+}
+.intro-marca .intro-tagline {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--texto-suave);
+  margin-top: 4px;
+}
+
+@media (max-width: 520px) {
+  .intro-flor-caja { width: 150px; height: 150px; }
+  .intro-mano-caja { width: 170px; height: 148px; }
+  .intro-marca .intro-logo-texto { font-size: 1.7rem; }
+}
