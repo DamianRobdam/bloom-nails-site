@@ -3,24 +3,13 @@
    Una flor gira, uno de sus pétalos cae y "pinta" en secuencia
    cada una de las uñas de una mano ilustrada, con una pequeña
    melodía generada en el navegador (sin archivos de audio).
-   Se muestra solo la primera vez que alguien entra al sitio
-   (se recuerda en este navegador con localStorage).
+   Se muestra en cada ingreso al sitio.
    ============================================================ */
 (function () {
   "use strict";
 
-  var CLAVE_LOCALSTORAGE = "bloom_intro_visto";
-
   var overlay = document.getElementById("intro-bloom");
   if (!overlay) return;
-
-  // Si ya se mostró antes en este navegador, no volver a mostrarla.
-  var yaVisto = false;
-  try { yaVisto = localStorage.getItem(CLAVE_LOCALSTORAGE) === "1"; } catch (e) { /* almacenamiento no disponible */ }
-  if (yaVisto) {
-    overlay.parentNode && overlay.parentNode.removeChild(overlay);
-    return;
-  }
 
   var florCaja   = document.getElementById("intro-flor-caja");
   var petaloOrig = document.getElementById("intro-petalo-origen");
@@ -48,7 +37,6 @@
     cerrado = true;
     temporizadores.forEach(clearTimeout);
     overlay.classList.add("intro-cerrando");
-    try { localStorage.setItem(CLAVE_LOCALSTORAGE, "1"); } catch (e) { /* ignorar */ }
     document.body.classList.remove("intro-bloqueo");
     setTimeout(function () {
       overlay.parentNode && overlay.parentNode.removeChild(overlay);
