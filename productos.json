@@ -5,7 +5,7 @@
     "categoria": "Ombré",
     "precio": 45000,
     "descripcion": "Degradado rosa suave, acabado brillante, forma almendra.",
-    "imagen": "assets/img/producto-1.svg",
+    "imagen": "assets/img/producto-1-temp.jpg",
     "incluye": [
       { "nombre": "24 uñas press on", "imagen": "assets/img/incluye-lima.svg" }
     ]
@@ -16,7 +16,7 @@
     "categoria": "Nude",
     "precio": 42000,
     "descripcion": "Beige elegante con borde dorado, ideal para toda ocasión.",
-    "imagen": "assets/img/producto-2.svg",
+    "imagen": "assets/img/producto-2-temp.jpg",
     "incluye": [
       { "nombre": "24 uñas press on", "imagen": "assets/img/incluye-lima.svg" }
     ]
@@ -27,7 +27,7 @@
     "categoria": "Glitter",
     "precio": 48000,
     "descripcion": "Full glitter rosa, brillo intenso para looks de fiesta.",
-    "imagen": "assets/img/producto-3.svg",
+    "imagen": "assets/img/producto-3-temp.jpg",
     "incluye": [
       { "nombre": "24 uñas press on", "imagen": "assets/img/incluye-lima.svg" }
     ]
@@ -38,7 +38,7 @@
     "categoria": "Francesa",
     "precio": 40000,
     "descripcion": "Francesa reinventada con línea rose gold.",
-    "imagen": "assets/img/producto-4.svg",
+    "imagen": "assets/img/producto-4-temp.jpg",
     "incluye": [
       { "nombre": "24 uñas press on", "imagen": "assets/img/incluye-lima.svg" }
     ]
@@ -49,7 +49,7 @@
     "categoria": "Mate",
     "precio": 43000,
     "descripcion": "Acabado mate aterciopelado en rosa pastel.",
-    "imagen": "assets/img/producto-5.svg",
+    "imagen": "assets/img/producto-5-temp.jpg",
     "incluye": [
       { "nombre": "24 uñas press on", "imagen": "assets/img/incluye-lima.svg" }
     ]
@@ -60,7 +60,7 @@
     "categoria": "Nude",
     "precio": 46000,
     "descripcion": "Efecto mármol en tonos beige y arena.",
-    "imagen": "assets/img/producto-6.svg",
+    "imagen": "assets/img/producto-6-temp.jpg",
     "incluye": [
       { "nombre": "24 uñas press on", "imagen": "assets/img/incluye-lima.svg" }
     ]
