@@ -826,6 +826,21 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   100% { box-shadow: 0 0 0 0 rgba(37,211,102,0); }
 }
 
+/* =========================== INSTAGRAM FLOTANTE =========================== */
+.instagram-flotante {
+  position: fixed;
+  bottom: 100px; right: 26px;
+  z-index: 999;
+  width: 62px; height: 62px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #FEDA75, #FA7E1E, #D62976, #962FBF, #4F5BD5);
+  display: grid; place-items: center;
+  color: #fff;
+  box-shadow: 0 10px 30px rgba(214,41,118,0.45);
+  transition: var(--transicion);
+}
+.instagram-flotante:hover { transform: scale(1.1); }
+
 /* =========================== MODAL PRODUCTO RÁPIDO =========================== */
 .toast {
   position: fixed;
