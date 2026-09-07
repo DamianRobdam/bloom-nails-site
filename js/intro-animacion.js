@@ -159,17 +159,22 @@
   }
 
   function iniciar() {
-    // 1) La flor ya gira sola vía animación CSS (~1.5s).
+    // 1) El capullo cerrado aparece (~0.85s) y luego florece.
     despues(function () {
-      // 2) La flor se desvanece y la mano aparece.
-      florCaja.classList.add("flor-oculta");
-      manoCaja.classList.add("mano-visible");
-    }, 1450);
+      // 2) El capullo florece: destello + transición a flor abierta.
+      florCaja.classList.add("flor-abierta");
+    }, 700);
 
     despues(function () {
-      // 3) El pétalo se desprende y empieza a saltar de uña en uña.
+      // 3) La flor se desvanece y la mano aparece.
+      florCaja.classList.add("flor-oculta");
+      manoCaja.classList.add("mano-visible");
+    }, 1550);
+
+    despues(function () {
+      // 4) El pétalo se desprende y empieza a saltar de uña en uña.
       iniciarSecuenciaUnas();
-    }, 2000);
+    }, 2100);
   }
 
   // Si algo tarda demasiado (navegador lento, pestaña en segundo plano),
