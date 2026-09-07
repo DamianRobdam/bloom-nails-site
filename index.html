@@ -59,120 +59,18 @@
     <button type="button" class="intro-saltar" id="intro-saltar">Saltar ✕</button>
 
     <div class="intro-flor-caja" id="intro-flor-caja">
-      <svg class="intro-flor" viewBox="0 0 300 300" width="100%" height="100%">
-        <defs>
-          <radialGradient id="intro-grad-petalo" cx="50%" cy="90%" r="80%">
-            <stop offset="0%" stop-color="#FFC2D9"/>
-            <stop offset="55%" stop-color="#FF7EA8"/>
-            <stop offset="100%" stop-color="#E8467F"/>
-          </radialGradient>
-          <radialGradient id="intro-grad-centro-flor" cx="35%" cy="30%" r="75%">
-            <stop offset="0%" stop-color="#F3D9A8"/>
-            <stop offset="60%" stop-color="#C9A876"/>
-            <stop offset="100%" stop-color="#A9884F"/>
-          </radialGradient>
-          <filter id="intro-sombra-flor" x="-40%" y="-40%" width="180%" height="180%">
-            <feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="#7A3350" flood-opacity="0.28"/>
-          </filter>
-        </defs>
-        <g filter="url(#intro-sombra-flor)">
-          <g>
-            <path class="intro-petalo" d="M150,152 C133,132 122,95 128,55 C130,40 150,28 150,28 C150,28 170,40 172,55 C178,95 167,132 150,152 Z" fill="url(#intro-grad-petalo)" stroke="#D6467A" stroke-width="1" transform="rotate(0 150 150)"/>
-            <path class="intro-petalo" d="M150,152 C133,132 122,95 128,55 C130,40 150,28 150,28 C150,28 170,40 172,55 C178,95 167,132 150,152 Z" fill="url(#intro-grad-petalo)" stroke="#D6467A" stroke-width="1" transform="rotate(60 150 150)"/>
-            <path class="intro-petalo" d="M150,152 C133,132 122,95 128,55 C130,40 150,28 150,28 C150,28 170,40 172,55 C178,95 167,132 150,152 Z" fill="url(#intro-grad-petalo)" stroke="#D6467A" stroke-width="1" transform="rotate(120 150 150)"/>
-            <path class="intro-petalo" d="M150,152 C133,132 122,95 128,55 C130,40 150,28 150,28 C150,28 170,40 172,55 C178,95 167,132 150,152 Z" fill="url(#intro-grad-petalo)" stroke="#D6467A" stroke-width="1" transform="rotate(180 150 150)"/>
-            <path class="intro-petalo" d="M150,152 C133,132 122,95 128,55 C130,40 150,28 150,28 C150,28 170,40 172,55 C178,95 167,132 150,152 Z" fill="url(#intro-grad-petalo)" stroke="#D6467A" stroke-width="1" transform="rotate(240 150 150)"/>
-            <path id="intro-petalo-origen" class="intro-petalo" d="M150,152 C133,132 122,95 128,55 C130,40 150,28 150,28 C150,28 170,40 172,55 C178,95 167,132 150,152 Z" fill="url(#intro-grad-petalo)" stroke="#D6467A" stroke-width="1" transform="rotate(300 150 150)"/>
-          </g>
-          <g stroke="#B8305F" stroke-width="1" opacity="0.35" fill="none">
-            <path d="M150,148 C148,120 148,80 150,45" transform="rotate(0 150 150)"/>
-            <path d="M150,148 C148,120 148,80 150,45" transform="rotate(60 150 150)"/>
-            <path d="M150,148 C148,120 148,80 150,45" transform="rotate(120 150 150)"/>
-            <path d="M150,148 C148,120 148,80 150,45" transform="rotate(180 150 150)"/>
-            <path d="M150,148 C148,120 148,80 150,45" transform="rotate(240 150 150)"/>
-            <path d="M150,148 C148,120 148,80 150,45" transform="rotate(300 150 150)"/>
-          </g>
-          <circle cx="150" cy="150" r="22" fill="url(#intro-grad-centro-flor)" stroke="#8C6C3A" stroke-width="1"/>
-          <g fill="#8C6C3A">
-            <circle cx="141" cy="144" r="1.6"/><circle cx="153" cy="140" r="1.6"/><circle cx="161" cy="150" r="1.6"/>
-            <circle cx="155" cy="159" r="1.6"/><circle cx="143" cy="158" r="1.6"/><circle cx="150" cy="150" r="1.8"/>
-          </g>
-          <ellipse cx="144" cy="143" rx="5" ry="3" fill="#FFF3DC" opacity="0.55"/>
-        </g>
-      </svg>
+      <div class="intro-flor-brillo"></div>
+      <img src="assets/img/intro-flor-cerrada.png" alt="" class="intro-flor-img intro-flor-cerrada">
+      <img src="assets/img/intro-flor-abierta.png" alt="" class="intro-flor-img intro-flor-abierta">
     </div>
 
     <div class="intro-mano-caja" id="intro-mano-caja">
-      <svg class="intro-mano" viewBox="0 0 300 340" width="100%" height="100%">
-        <defs>
-          <linearGradient id="intro-grad-piel" x1="0.2" y1="0" x2="0.8" y2="1">
-            <stop offset="0%" stop-color="#FBE3D2"/>
-            <stop offset="45%" stop-color="#F0C9AE"/>
-            <stop offset="100%" stop-color="#DDA987"/>
-          </linearGradient>
-          <linearGradient id="intro-grad-piel-sombra" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stop-color="#000000" stop-opacity="0"/>
-            <stop offset="100%" stop-color="#7A4A32" stop-opacity="0.28"/>
-          </linearGradient>
-          <linearGradient id="intro-grad-una-base" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stop-color="#FCEAE0"/>
-            <stop offset="100%" stop-color="#F1CBB4"/>
-          </linearGradient>
-          <linearGradient id="intro-grad-una" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stop-color="#FF9EC3"/>
-            <stop offset="55%" stop-color="#FF6FA5"/>
-            <stop offset="100%" stop-color="#C9A876"/>
-          </linearGradient>
-          <filter id="intro-sombra-mano" x="-30%" y="-30%" width="160%" height="160%">
-            <feDropShadow dx="0" dy="10" stdDeviation="9" flood-color="#5C3324" flood-opacity="0.25"/>
-          </filter>
-        </defs>
-
-        <ellipse cx="158" cy="330" rx="82" ry="12" fill="#5C3324" opacity="0.16"/>
-
-        <g filter="url(#intro-sombra-mano)">
-          <!-- muñeca (detrás), mas angosta -->
-          <path d="M106,225 C102,255 100,295 103,328 C130,335 186,335 213,328 C216,295 214,255 210,225 C200,236 116,236 106,225 Z" fill="url(#intro-grad-piel)" stroke="#C68F6C" stroke-width="1.3"/>
-          <path d="M106,225 C114,231 202,231 210,225 C210,231 210,236 210,236 C200,243 116,243 106,236 Z" fill="url(#intro-grad-piel-sombra)" opacity="0.5"/>
-
-          <!-- pulgar, mas delgado (detrás de la palma, base fundida bajo el bulto tenar) -->
-          <g transform="rotate(-52 92 222)">
-            <path d="M82.9,222 C82.1,192 84.4,172 85.1,163 A6.375,6.375 0 1 1 97.9,163 C98.6,172 100.9,192 100.1,222 Z" fill="url(#intro-grad-piel)" stroke="#C68F6C" stroke-width="1.1"/>
-            <path d="M86,185 C89,183 94,183 97,185" stroke="#C68F6C" stroke-width="0.7" fill="none" opacity="0.4"/>
-            <ellipse id="intro-una-1" class="intro-una" cx="91.5" cy="167" rx="5.2" ry="8.4" fill="url(#intro-grad-una-base)" stroke="#C68F6C" stroke-width="0.9"/>
-          </g>
-
-          <!-- palma + dedos: silueta continua, delgada, con separaciones naturales -->
-          <path d="M84,246 C70,224 76,198 92,178 C100,168 108,158 112.2,152
-                   C113.2,106.3 115.8,67.2 116.8,63.2 A5.2,5.2 0 1 1 127.2,63.2
-                   C128.2,67.2 130.8,105 129.8,152
-                   C132.8,162 132.8,176 135.8,182 C138.8,176 138.8,160 141.8,150
-                   C140.8,95.35 143.5,47.5 144.5,43.5 A5.5,5.5 0 1 1 155.5,43.5
-                   C156.5,47.5 159.2,94 158.2,150
-                   C161.2,160 161.2,176 164.2,182 C167.2,176 167.2,162 170.2,152
-                   C169.2,107.3 171.8,69.2 172.8,65.2 A5.2,5.2 0 1 1 183.2,65.2
-                   C184.2,69.2 186.8,106 185.8,152
-                   C188.8,162 189.1,176 192.1,182 C195.1,176 195.4,165 198.4,155
-                   C197.4,126.05 199.5,103.5 200.5,99.5 A4.5,4.5 0 1 1 209.5,99.5
-                   C210.5,103.5 212.6,125 211.6,155
-                   C215.6,185 232,210 228,250 C208,264 116,264 84,246 Z"
-                fill="url(#intro-grad-piel)" stroke="#C68F6C" stroke-width="1.3"/>
-
-          <!-- pliegues de nudillo -->
-          <path d="M117,95 C120,93 124,93 127,95" stroke="#C68F6C" stroke-width="0.7" fill="none" opacity="0.45"/>
-          <path d="M145,78 C149,76 153,76 157,78" stroke="#C68F6C" stroke-width="0.7" fill="none" opacity="0.45"/>
-          <path d="M173,97 C176,95 180,95 183,97" stroke="#C68F6C" stroke-width="0.7" fill="none" opacity="0.45"/>
-          <path d="M198,124 C200,122.5 204,122.5 206,124" stroke="#C68F6C" stroke-width="0.6" fill="none" opacity="0.4"/>
-
-          <!-- uñas, mas pequeñas -->
-          <ellipse id="intro-una-2" class="intro-una" cx="122" cy="67" rx="5.0" ry="8.0" fill="url(#intro-grad-una-base)" stroke="#C68F6C" stroke-width="0.9"/>
-          <ellipse id="intro-una-3" class="intro-una" cx="150" cy="47" rx="5.3" ry="8.5" fill="url(#intro-grad-una-base)" stroke="#C68F6C" stroke-width="0.9"/>
-          <ellipse id="intro-una-4" class="intro-una" cx="178" cy="69" rx="5.0" ry="8.0" fill="url(#intro-grad-una-base)" stroke="#C68F6C" stroke-width="0.9"/>
-          <ellipse id="intro-una-5" class="intro-una" cx="205" cy="103" rx="4.3" ry="7.0" fill="url(#intro-grad-una-base)" stroke="#C68F6C" stroke-width="0.9"/>
-
-          <ellipse cx="150" cy="185" rx="48" ry="26" fill="#FFFFFF" opacity="0.13"/>
-        </g>
-      </svg>
+      <img src="assets/img/intro-mano.png" alt="" class="intro-mano-img">
+      <div id="intro-una-1" class="intro-una" style="left:17.50%; top:42.03%; width:12.14%; height:17.51%; transform:rotate(-8deg);"></div>
+      <div id="intro-una-2" class="intro-una" style="left:11.79%; top:70.93%; width:13.57%; height:17.51%; transform:rotate(-15deg);"></div>
+      <div id="intro-una-3" class="intro-una" style="left:33.21%; top:45.97%; width:12.14%; height:16.64%; transform:rotate(-3deg);"></div>
+      <div id="intro-una-4" class="intro-una" style="left:37.50%; top:71.37%; width:13.57%; height:16.64%; transform:rotate(-8deg);"></div>
+      <div id="intro-una-5" class="intro-una" style="left:59.93%; top:57.71%; width:12.14%; height:14.89%; transform:rotate(12deg);"></div>
     </div>
 
     <div class="intro-petalo-libre" id="intro-petalo-libre"></div>
