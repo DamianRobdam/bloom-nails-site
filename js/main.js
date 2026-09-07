@@ -5,6 +5,9 @@
 // Número de WhatsApp del negocio (indicativo de país + número, sin +, sin espacios)
 window.BLOOM_WHATSAPP_NUMERO = "573223291635";
 
+// Usuario de Instagram del negocio (sin @) - Damian: reemplaza este valor cuando me pases el usuario real
+window.BLOOM_INSTAGRAM_USUARIO = "TU_USUARIO_IG";
+
 document.addEventListener("DOMContentLoaded", () => {
   // ----- Header fijo al hacer scroll -----
   const header = document.getElementById("encabezado");
@@ -34,6 +37,18 @@ document.addEventListener("DOMContentLoaded", () => {
   if (waFlotante) {
     const texto = "¡Hola Bloom! ✨ Quiero conocer más sobre las uñas press on.";
     waFlotante.href = `https://wa.me/${window.BLOOM_WHATSAPP_NUMERO}?text=${encodeURIComponent(texto)}`;
+  }
+
+  // ----- Botón flotante de Instagram (chat directo) -----
+  const igFlotante = document.getElementById("instagram-flotante");
+  if (igFlotante) {
+    igFlotante.href = `https://ig.me/m/${window.BLOOM_INSTAGRAM_USUARIO}`;
+  }
+
+  // ----- Enlace de Instagram en el pie de página -----
+  const igPie = document.getElementById("enlace-instagram-pie");
+  if (igPie) {
+    igPie.href = `https://instagram.com/${window.BLOOM_INSTAGRAM_USUARIO}`;
   }
 
   // ----- Año dinámico en el pie de página -----
