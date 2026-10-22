@@ -55,29 +55,26 @@
 <body>
 
   <!-- ================= INTRO ANIMADA ================= -->
-  <div class="intro-bloom" id="intro-bloom">
-    <button type="button" class="intro-saltar" id="intro-saltar">Saltar ✕</button>
+  <div class="intro-bloom" id="intro-bloom" role="presentation">
+    <button type="button" class="intro-saltar" id="intro-saltar">Saltar</button>
 
-    <div class="intro-flor-caja" id="intro-flor-caja">
-      <div class="intro-flor-brillo"></div>
-      <img src="assets/img/intro-flor-cerrada.png" alt="" class="intro-flor-img intro-flor-cerrada">
-      <img src="assets/img/intro-flor-abierta.png" alt="" class="intro-flor-img intro-flor-abierta">
-    </div>
+    <p class="intro-logo-texto">Bloom</p>
 
     <div class="intro-mano-caja" id="intro-mano-caja">
-      <img src="assets/img/intro-mano.png" alt="" class="intro-mano-img">
-      <div id="intro-una-1" class="intro-una" style="left:17.50%; top:42.03%; width:12.14%; height:17.51%; transform:rotate(-8deg);"></div>
-      <div id="intro-una-2" class="intro-una" style="left:11.79%; top:70.93%; width:13.57%; height:17.51%; transform:rotate(-15deg);"></div>
-      <div id="intro-una-3" class="intro-una" style="left:33.21%; top:45.97%; width:12.14%; height:16.64%; transform:rotate(-3deg);"></div>
-      <div id="intro-una-4" class="intro-una" style="left:37.50%; top:71.37%; width:13.57%; height:16.64%; transform:rotate(-8deg);"></div>
-      <div id="intro-una-5" class="intro-una" style="left:59.93%; top:57.71%; width:12.14%; height:14.89%; transform:rotate(12deg);"></div>
+      <div class="intro-mano-interior">
+        <img src="assets/img/intro-mano.png" alt="" class="intro-capa intro-capa-0" width="700" height="571">
+        <img src="assets/img/intro-capa-1.webp" alt="" class="intro-capa intro-capa-1" id="intro-capa-1" width="700" height="571">
+        <img src="assets/img/intro-capa-2.webp" alt="" class="intro-capa intro-capa-2" id="intro-capa-2" width="700" height="571">
+        <img src="assets/img/intro-capa-3.webp" alt="" class="intro-capa intro-capa-3" id="intro-capa-3" width="700" height="571">
+        <span class="intro-brillo" id="intro-brillo" aria-hidden="true"></span>
+      </div>
     </div>
 
-    <div class="intro-petalo-libre" id="intro-petalo-libre"></div>
-
-    <div class="intro-marca" id="intro-marca">
-      <span class="intro-logo-texto">Bloom</span>
-      <span class="intro-tagline">Uñas press on que florecen contigo</span>
+    <div class="intro-leyenda" id="intro-leyenda" aria-live="polite">
+      <span class="intro-diseno" data-diseno="1">Ombré Rosa Dream</span>
+      <span class="intro-diseno" data-diseno="2">Glitter Rosa Fiesta</span>
+      <span class="intro-diseno" data-diseno="3">Beige Marmoleado</span>
+      <span class="intro-diseno intro-final" data-diseno="final">Uñas press on que florecen contigo</span>
     </div>
   </div>
 

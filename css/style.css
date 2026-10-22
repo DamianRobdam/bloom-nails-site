@@ -1597,6 +1597,9 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 
 
 /* =========================== INTRO ANIMADA =========================== */
+/* Una mano real: las uñas naturales cambian a tres diseños del catálogo
+   con un barrido de luz. Un solo acento (rosa), radios del sitio, easing
+   sin rebote. */
 .intro-bloom {
   position: fixed;
   inset: 0;
@@ -1605,7 +1608,9 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(160deg, var(--rosa-pastel) 0%, var(--beige-claro) 60%, var(--rosa-claro) 100%);
+  gap: clamp(8px, 2.2vh, 20px);
+  padding: 0 16px;
+  background: linear-gradient(160deg, var(--rosa-pastel) 0%, var(--crema) 58%, var(--beige-claro) 100%);
   overflow: hidden;
   transition: opacity 0.7s ease;
 }
@@ -1614,136 +1619,145 @@ body.intro-bloqueo { overflow: hidden; height: 100%; }
 
 .intro-saltar {
   position: absolute;
-  top: 22px;
-  right: 22px;
-  background: rgba(255,255,255,0.6);
-  border: 1px solid rgba(255,255,255,0.8);
+  top: 18px;
+  right: 18px;
+  min-height: 44px;
+  padding: 0 18px;
+  background: rgba(255, 253, 249, 0.7);
+  border: 1px solid rgba(201, 168, 118, 0.45);
   color: var(--texto-oscuro);
-  font-size: 0.78rem;
-  padding: 8px 14px;
-  border-radius: 20px;
+  font: 600 0.82rem/1 'Poppins', sans-serif;
+  border-radius: 999px;
   cursor: pointer;
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
+  transition: background 0.25s ease;
 }
-.intro-saltar:hover { background: #fff; }
+.intro-saltar:hover { background: var(--blanco); }
+.intro-saltar:focus-visible { outline: 3px solid var(--rosa-fuerte); outline-offset: 2px; }
 
-/* -------- flor real (bud → bloom) -------- */
-.intro-flor-caja {
+.intro-logo-texto {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.7rem, 4.4vh, 2.2rem);
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  color: var(--texto-oscuro);
+  opacity: 0;
+  transform: translateY(-6px);
+  animation: intro-entra-suave 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.1s forwards;
+}
+
+/* -------- mano real + barrido de luz -------- */
+.intro-mano-caja {
   position: relative;
-  width: 180px;
-  height: 180px;
-  transition: opacity 0.6s ease, transform 0.6s ease;
-  filter: drop-shadow(0 10px 16px rgba(122,51,80,0.28));
+  width: min(600px, 92vw, calc((100svh - 230px) * 1.226));
+  aspect-ratio: 700 / 571;
+  opacity: 0;
+  transform: translateY(14px);
+  animation: intro-entra-suave 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.2s forwards;
+  filter: drop-shadow(0 18px 22px rgba(59, 42, 47, 0.16));
 }
-.intro-flor-caja.flor-oculta { opacity: 0; transform: scale(0.7) translateY(-10px); }
-
-.intro-flor-img {
+.intro-mano-interior {
+  position: absolute;
+  inset: 0;
+  /* difumina los bordes recortados de la foto contra el fondo */
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 12%, #000 94%, transparent 100%),
+                      linear-gradient(to right, transparent 0, #000 4%, #000 82%, transparent 100%);
+  -webkit-mask-composite: source-in;
+          mask-image: linear-gradient(to bottom, transparent 0, #000 12%, #000 94%, transparent 100%),
+                      linear-gradient(to right, transparent 0, #000 4%, #000 82%, transparent 100%);
+          mask-composite: intersect;
+}
+.intro-capa {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   object-fit: contain;
-  opacity: 0;
-  transform: scale(0.9) rotate(0deg);
-  transition: opacity 0.85s ease, transform 0.85s ease;
-}
-.intro-flor-cerrada {
-  opacity: 1;
-  transform: scale(0.82) rotate(-5deg);
-  animation: intro-flor-entra 0.85s cubic-bezier(0.22, 1, 0.36, 1) 1;
-}
-.intro-flor-abierta { opacity: 0; transform: scale(1.05) rotate(4deg); }
-.intro-flor-caja.flor-abierta .intro-flor-cerrada { opacity: 0; transform: scale(1.12) rotate(6deg); }
-.intro-flor-caja.flor-abierta .intro-flor-abierta { opacity: 1; transform: scale(1) rotate(0deg); }
-
-.intro-flor-brillo {
-  position: absolute;
-  inset: -25%;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(255,255,255,0.95) 0%, rgba(255,199,222,0.55) 42%, rgba(255,199,222,0) 72%);
-  opacity: 0;
-  pointer-events: none;
-}
-.intro-flor-caja.flor-abierta .intro-flor-brillo { animation: intro-flor-destello 0.9s ease-out 1; }
-
-@keyframes intro-flor-entra {
-  0% { opacity: 0; transform: scale(0.55) rotate(-8deg); }
-  100% { opacity: 1; transform: scale(0.82) rotate(-5deg); }
-}
-@keyframes intro-flor-destello {
-  0% { opacity: 0; transform: scale(0.55); }
-  40% { opacity: 1; transform: scale(1.2); }
-  100% { opacity: 0; transform: scale(1.4); }
-}
-
-/* -------- mano real -------- */
-.intro-mano-caja {
-  position: relative;
-  width: 240px;
-  aspect-ratio: 700 / 571;
-  margin-top: 0;
-  opacity: 0;
-  transform: translateY(24px);
-  transition: opacity 0.7s ease, transform 0.7s ease;
-  filter: drop-shadow(0 12px 18px rgba(59,42,47,0.24));
-}
-.intro-mano-caja.mano-visible { opacity: 1; transform: translateY(0); }
-
-.intro-mano-img { display: block; width: 100%; height: 100%; object-fit: contain; }
-
-.intro-una {
-  position: absolute;
-  border-radius: 48% 48% 40% 40% / 62% 62% 38% 38%;
-  opacity: 0;
-  pointer-events: none;
-  background: linear-gradient(160deg, #FFE3EE 0%, var(--rosa) 45%, var(--rosa-fuerte) 78%, var(--oro-rosa) 100%);
-  box-shadow: 0 0 5px 1px rgba(255,111,165,0.5);
-  transition: opacity 0.4s ease, transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
-  transform-origin: center;
-}
-.intro-una.una-pintada { opacity: 0.9; transform: scale(1.04); }
-
-/* -------- pétalo libre real -------- */
-.intro-petalo-libre {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 34px;
-  height: 34px;
-  background-image: url(../assets/img/intro-petalo.png);
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-  filter: drop-shadow(0 3px 6px rgba(59,42,47,0.3));
-  opacity: 0;
-  pointer-events: none;
-  z-index: 3;
-  transition: transform 0.38s cubic-bezier(.5,-0.1,.4,1.2), opacity 0.25s ease;
-}
-.intro-petalo-libre.activo { opacity: 1; }
-
-.intro-marca {
-  text-align: center;
-  margin-top: 20px;
-  opacity: 0;
-  transform: translateY(10px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
-}
-.intro-marca.marca-visible { opacity: 1; transform: translateY(0); }
-.intro-marca .intro-logo-texto {
   display: block;
-  font-family: 'Playfair Display', serif;
-  font-size: 2.1rem;
-  font-weight: 700;
-  color: var(--rosa-fuerte);
 }
-.intro-marca .intro-tagline { display: block; font-size: 0.85rem; color: var(--texto-suave); margin-top: 4px; }
+/* Las capas con diseño aparecen detrás de un frente inclinado de luz. */
+.intro-capa-1, .intro-capa-2, .intro-capa-3 {
+  -webkit-mask-image: linear-gradient(100deg, #000 0, #000 43%, transparent 49%);
+          mask-image: linear-gradient(100deg, #000 0, #000 43%, transparent 49%);
+  -webkit-mask-size: 300% 100%;
+          mask-size: 300% 100%;
+  -webkit-mask-repeat: no-repeat;
+          mask-repeat: no-repeat;
+  -webkit-mask-position: 70% 0;
+          mask-position: 70% 0;
+  visibility: hidden;
+}
+.intro-capa.en-barrido {
+  visibility: visible;
+  animation: intro-revela 1.15s cubic-bezier(0.4, 0, 0.3, 1) forwards;
+}
+@keyframes intro-revela {
+  from { -webkit-mask-position: 70% 0; mask-position: 70% 0; }
+  to   { -webkit-mask-position: 10% 0; mask-position: 10% 0; }
+}
 
-@media (max-width: 520px) {
-  .intro-flor-caja { width: 130px; height: 130px; }
-  .intro-mano-caja { width: 190px; }
-  .intro-marca .intro-logo-texto { font-size: 1.7rem; }
+/* Franja de luz: solo se ve sobre la mano (usa su silueta como máscara). */
+.intro-brillo {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  background-image: linear-gradient(100deg, transparent 34%, rgba(255, 255, 255, 0.0) 38%, rgba(255, 255, 255, 0.6) 46%, rgba(255, 255, 255, 0.0) 54%, transparent 58%);
+  background-size: 300% 100%;
+  background-repeat: no-repeat;
+  background-position: 70% 0;
+  -webkit-mask-image: url(../assets/img/intro-mano.png);
+          mask-image: url(../assets/img/intro-mano.png);
+  -webkit-mask-size: 100% 100%;
+          mask-size: 100% 100%;
+  mix-blend-mode: screen;
+}
+.intro-brillo.en-barrido { animation: intro-brillo 1.15s cubic-bezier(0.4, 0, 0.3, 1) forwards; }
+@keyframes intro-brillo {
+  0%   { opacity: 0; background-position: 70% 0; }
+  12%  { opacity: 1; }
+  88%  { opacity: 1; }
+  100% { opacity: 0; background-position: 10% 0; }
+}
+
+/* -------- leyenda: nombre del diseño, luego el lema -------- */
+.intro-leyenda {
+  position: relative;
+  height: 2.4rem;
+  width: min(92vw, 520px);
+  text-align: center;
+}
+.intro-diseno {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: clamp(1.1rem, 2.8vh, 1.4rem);
+  color: var(--texto-oscuro);
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.45s ease, transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.intro-diseno.visible { opacity: 1; transform: translateY(0); }
+.intro-final {
+  font-style: normal;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: clamp(0.92rem, 2.2vh, 1.05rem);
+  color: var(--texto-suave);
+}
+
+@keyframes intro-entra-suave {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .intro-logo-texto, .intro-mano-caja { animation-duration: 0.01s; animation-delay: 0s; }
+  .intro-capa.en-barrido, .intro-brillo.en-barrido { animation-duration: 0.01s; }
 }
 
 /* =========================== BLOG =========================== */
