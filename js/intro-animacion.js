@@ -1,9 +1,8 @@
 /* ============================================================
    Bloom · Animación de entrada
-   Una flor gira, uno de sus pétalos cae y "pinta" en secuencia
-   cada una de las uñas de una mano ilustrada, con una pequeña
-   melodía generada en el navegador (sin archivos de audio).
-   Se muestra en cada ingreso al sitio.
+   Una mano real: las uñas naturales cambian a tres diseños del
+   catálogo cuando pasa un barrido de luz. Sonido sintetizado en
+   el navegador (sin archivos de audio). Se muestra en cada ingreso.
    ============================================================ */
 (function () {
   "use strict";
@@ -11,17 +10,12 @@
   var overlay = document.getElementById("intro-bloom");
   if (!overlay) return;
 
-  var florCaja   = document.getElementById("intro-flor-caja");
-  var petaloOrig = document.getElementById("intro-petalo-origen");
-  var manoCaja   = document.getElementById("intro-mano-caja");
-  var petaloLibre= document.getElementById("intro-petalo-libre");
-  var marca      = document.getElementById("intro-marca");
-  var botonSaltar= document.getElementById("intro-saltar");
-  var unas = ["intro-una-1", "intro-una-2", "intro-una-3", "intro-una-4", "intro-una-5"]
-    .map(function (id) { return document.getElementById(id); })
-    .filter(Boolean);
+  var capas = [1, 2, 3].map(function (n) { return document.getElementById("intro-capa-" + n); });
+  var brillo = document.getElementById("intro-brillo");
+  var leyenda = document.getElementById("intro-leyenda");
+  var botonSaltar = document.getElementById("intro-saltar");
 
-  if (!florCaja || !manoCaja || !petaloLibre || !marca) {
+  if (!capas[0] || !capas[1] || !capas[2] || !brillo || !leyenda) {
     overlay.parentNode && overlay.parentNode.removeChild(overlay);
     return;
   }
@@ -103,78 +97,48 @@
   // Intento inicial (funcionará directamente en navegadores que lo permitan)
   obtenerAudioCtx();
 
-  /* ---------------- animación: el pétalo salta de uña en uña ---------------- */
-  var notasEscala = [880, 932.33, 1046.5, 1174.66, 1318.51]; // melodía ascendente suave
+  /* ---------------- animación: barrido de luz ---------------- */
+  var reducirMovimiento = window.matchMedia &&
+    window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  function centro(el) {
-    var r = el.getBoundingClientRect();
-    return { x: r.left + r.width / 2, y: r.top + r.height / 2 };
-  }
-
-  var petaloEstado = { x: 0, y: 0, rot: 0, iniciado: false };
-
-  function moverPetaloA(elDestino, alTerminar) {
-    var destino = centro(elDestino);
-    var mitadAncho = petaloLibre.offsetWidth / 2;
-    var mitadAlto = petaloLibre.offsetHeight / 2;
-    var nuevoX = destino.x - mitadAncho;
-    var nuevoY = destino.y - mitadAlto;
-    petaloEstado.x = nuevoX;
-    petaloEstado.y = nuevoY;
-    petaloEstado.rot += 130;
-    petaloLibre.style.transform =
-      "translate(" + nuevoX + "px," + nuevoY + "px) rotate(" + petaloEstado.rot + "deg)";
-    despues(alTerminar, 400);
-  }
-
-  function iniciarSecuenciaUnas() {
-    var origenFlor = centro(florCaja);
-    var mitadAncho = petaloLibre.offsetWidth / 2;
-    var mitadAlto = petaloLibre.offsetHeight / 2;
-    petaloEstado.x = origenFlor.x - mitadAncho;
-    petaloEstado.y = origenFlor.y - mitadAlto;
-    petaloEstado.rot = 0;
-    petaloLibre.style.transform = "translate(" + petaloEstado.x + "px," + petaloEstado.y + "px) rotate(0deg)";
-    petaloLibre.classList.add("activo");
-
-    var i = 0;
-    function siguiente() {
-      if (i >= unas.length) {
-        petaloLibre.style.opacity = "0";
-        despues(function () {
-          marca.classList.add("marca-visible");
-          reproducirAcordeFinal();
-        }, 200);
-        despues(cerrarIntro, 2700);
-        return;
-      }
-      moverPetaloA(unas[i], function () {
-        unas[i].classList.add("una-pintada");
-        reproducirNota(notasEscala[i] || 1318.51);
-        i++;
-        despues(siguiente, 140);
-      });
+  function mostrarTexto(clave) {
+    var items = leyenda.querySelectorAll(".intro-diseno");
+    for (var k = 0; k < items.length; k++) {
+      items[k].classList.toggle("visible", items[k].getAttribute("data-diseno") === String(clave));
     }
-    siguiente();
+  }
+
+  function barrido(n) {
+    var capa = capas[n - 1];
+    // reinicia el brillo para que la franja vuelva a pasar
+    brillo.classList.remove("en-barrido");
+    void brillo.offsetWidth;
+    brillo.classList.add("en-barrido");
+    capa.classList.add("en-barrido");
+    mostrarTexto("");                       // el nombre anterior se va...
+    despues(function () { mostrarTexto(n); }, 520); // ...y entra el del nuevo diseño
+    // pequeño "cling" ascendente mientras pasa la luz
+    var base = [880, 1046.5, 1174.66][n - 1];
+    reproducirNota(base);
+    despues(function () { reproducirNota(base * 1.5); }, 150);
   }
 
   function iniciar() {
-    // 1) El capullo cerrado aparece (~0.85s) y luego florece.
+    if (reducirMovimiento) {
+      // sin movimiento: se muestra el último diseño y el lema, y se cierra pronto
+      capas[2].classList.add("en-barrido");
+      mostrarTexto("final");
+      despues(cerrarIntro, 2200);
+      return;
+    }
+    despues(function () { barrido(1); }, 900);
+    despues(function () { barrido(2); }, 2300);
+    despues(function () { barrido(3); }, 3700);
     despues(function () {
-      // 2) El capullo florece: destello + transición a flor abierta.
-      florCaja.classList.add("flor-abierta");
-    }, 700);
-
-    despues(function () {
-      // 3) La flor se desvanece y la mano aparece.
-      florCaja.classList.add("flor-oculta");
-      manoCaja.classList.add("mano-visible");
-    }, 1550);
-
-    despues(function () {
-      // 4) El pétalo se desprende y empieza a saltar de uña en uña.
-      iniciarSecuenciaUnas();
-    }, 2100);
+      mostrarTexto("final");
+      reproducirAcordeFinal();
+    }, 5000);
+    despues(cerrarIntro, 6700);
   }
 
   // Si algo tarda demasiado (navegador lento, pestaña en segundo plano),
